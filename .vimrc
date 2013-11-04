@@ -24,8 +24,11 @@ Bundle "groenewege/vim-less"
 Bundle "plasticboy/vim-markdown"
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle "bling/vim-airline"
 
-filetype plugin indent on     " required!
+filetype plugin indent on     " required for Vundle
+
+let g:airline_powerline_fonts = 1
 
 if has("gui_running")
 	colorscheme made_of_code
@@ -101,9 +104,12 @@ set guioptions-=Lrbl
 " enable alt space, perhaps even alt tab
 set winaltkeys=yes
 
-" gvim font
-if !has("mac")
-	set guifont=Consolas:h10
+
+" set guifont="Inconsolata-dz for Powerline:h10"
+
+" mvim font
+if has("mac")
+	set guifont=Meslo\ LG\ S\ DZ\ Regular\ for\ Powerline:h11,Consolas:h10
 endif
 
 set gdefault " makes /g searches happen by default
