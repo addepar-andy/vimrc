@@ -31,10 +31,10 @@ filetype plugin indent on     " required for Vundle
 let g:airline_powerline_fonts = 1
 
 if has("gui_running")
-	colorscheme made_of_code
+	colorscheme zmrok
 	set listchars=tab:»\ ,eol:¬
 else
-	colorscheme default
+	colorscheme desert
 endif
 
 let python_highlight_string_formatting = 1
@@ -103,9 +103,6 @@ set guioptions-=Lrbl
 
 " enable alt space, perhaps even alt tab
 set winaltkeys=yes
-
-
-" set guifont="Inconsolata-dz for Powerline:h10"
 
 " mvim font
 if has("mac")
