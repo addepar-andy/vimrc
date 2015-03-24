@@ -9,11 +9,10 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
-Bundle "pyflakes.vim"
-Bundle "python.vim"
 Bundle "hexHighlight.vim"
 Bundle "vim-coffee-script"
 " original repos on github
+Bundle "me-vlad/python-syntax.vim"
 Bundle "flazz/vim-colorschemes"
 Bundle "xolox/vim-misc"
 Bundle "xolox/vim-colorscheme-switcher"
@@ -25,16 +24,26 @@ Bundle "plasticboy/vim-markdown"
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle "bling/vim-airline"
+Bundle "lambdatoast/elm.vim"
+Bundle "mustache/vim-mustache-handlebars"
+Bundle "tpope/vim-unimpaired"
+
+" :PluginInstall  to install vundle plugins
 
 filetype plugin indent on     " required for Vundle
 
+let g:syntastic_coffee_checkers = ['coffeelint']
+let g:syntastic_coffee_coffeelint_args = "--csv --file /Users/andy/src/Iverson/iverson/coffeelint.json"
+let g:syntastic_mode_map = { "mode": "active", "passive_filetypes": ["html"] }
 let g:airline_powerline_fonts = 1
+" ctrlp ignore gitignored files (https://github.com/kien/ctrlp.vim/issues/174)
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 if has("gui_running")
-	colorscheme zmrok
-	set listchars=tab:»\ ,eol:¬
+  colorscheme zmrok
+  set listchars=tab:»\ ,eol:¬
 else
-	colorscheme desert
+  colorscheme desert
 endif
 
 let python_highlight_string_formatting = 1
