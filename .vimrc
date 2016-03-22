@@ -27,15 +27,23 @@ Bundle "bling/vim-airline"
 Bundle "lambdatoast/elm.vim"
 Bundle "mustache/vim-mustache-handlebars"
 Bundle "tpope/vim-unimpaired"
+Bundle "kien/ctrlp.vim"
+Bundle "rking/ag.vim"
 
 " :PluginInstall  to install vundle plugins
 
 filetype plugin indent on     " required for Vundle
 
-let g:syntastic_coffee_checkers = ['coffeelint']
-let g:syntastic_coffee_coffeelint_args = "--csv --file /Users/andy/src/Iverson/iverson/coffeelint.json"
+" let g:syntastic_coffee_checkers = ['coffeelint']
+" let g:syntastic_coffee_coffeelint_args = "--csv --file /Users/andy/src/Iverson/iverson/coffeelint.json"
 let g:syntastic_mode_map = { "mode": "active", "passive_filetypes": ["html"] }
 let g:airline_powerline_fonts = 1
+
+"ctrlp stuff
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_root_markers=".ctrlp_root"
+
 " ctrlp ignore gitignored files (https://github.com/kien/ctrlp.vim/issues/174)
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
@@ -83,7 +91,7 @@ set hidden
 set fileformats=unix,dos
 
 " ignore .class and .pyc files
-set wildignore=*.pyc,*.class
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class,*.pyc
 " bash style completion
 set wildmode=longest,list,full
 set wildmenu
@@ -92,9 +100,9 @@ set wildmenu
 set backspace=2
 
 " automagically save / restore folds
-au BufWinLeave *.* mkview
-au BufWritePost *.* mkview
-au BufWinEnter *.* silent loadview
+"au BufWinLeave *.* mkview
+"au BufWritePost *.* mkview
+"au BufWinEnter *.* silent loadview
 
 " http://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
 if &diff && has("gui_running")
@@ -121,6 +129,9 @@ endif
 set gdefault " makes /g searches happen by default
 
 set clipboard=unnamed " automatically yank to the windows clipboard
+
+" & will Ag the current word
+nmap & :Ag <cword><CR>
 
 " Middle Mouse button pastes all the time on accident
 " Apparently double / triple / quadruple middle mouse click also pastes
@@ -155,8 +166,8 @@ nmap <LEADER>c :lcd %:p:h<CR>
 nmap <LEADER>C :cd %:p:h<CR>
 
 " make space toggle folds
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':'l')<CR>
-vnoremap <Space> zf
+"nnoremap <silent> <Space> @=(foldlevel('.')?'za':'l')<CR>
+"vnoremap <Space> zf
 
 " make Control Up and Down increase / decrease font size
 nnoremap <C-Up> :silent! let &guifont = substitute(
